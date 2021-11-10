@@ -1,0 +1,20 @@
+{
+    "type": "mongodb",
+    "url": "test123test456",
+    "useUnifiedTopology": true,
+    "useNewUrlParser": true,
+    "writeConcern": {
+        "j": true
+    },
+    "synchronize": true,
+    "logging": false,
+    "entities": ["src/models/**/*.ts"],
+    "migrations": ["src/migrations/**/*.ts"],
+    "cli": {
+        "entitiesDir": "src/models",
+        "migrationsDir": "src/migrations"
+    }
+}
+
+
+

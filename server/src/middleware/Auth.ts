@@ -1,0 +1,26 @@
+import jwt from "jsonwebtoken";
+import express from "express";
+import { config } from "../config/keys";
+import { Users } from "../models/Users";
+
+export const Auth: express.RequestHandler =
+async (req, res, next) => {
+    try {
+        const token = req.cookies.token;
+        if (!token) return next();
+        const { email }: any = jwt.verify(token, config.JWT_SECRET);
+        const user = await Users.findOne({ email })
+        res.locals.user = user;
+        return next();
+    } catch (error) {
+        console.log(error);
+        res.status(401).json({error: "Unauthorized!"});
+    }
+};
+
+// const token: string = req.cookies.token;
+        // if (!token) throw new Error("Unauthorized!");
+        // const { email }: any = jwt.verify(token, config.JWT_SECRET);
+        // const user: Users | undefined = res.locals.user;
+        // if (!user) throw new Error("Unauthorized!");
+        // return next();

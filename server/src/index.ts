@@ -4,6 +4,7 @@ import helmet from "helmet";
 import logger from "morgan";
 import { trim } from "./middleware/trim";
 import { userRt } from "./routes/userRt";
+import { bookRt } from "./routes/bookRt";
 import { createConnection } from "typeorm";
 
 (async () => {
@@ -34,6 +35,7 @@ import { createConnection } from "typeorm";
 
     // Routes and Port
     app.use("/api/user", userRt);
+    app.use("/api/", bookRt);
     const port = process.env.PORT || 9000;
     app.listen(port, () => {
         console.log(`Server: http://localhost:${port}`);

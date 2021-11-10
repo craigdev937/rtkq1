@@ -1,9 +1,10 @@
 import express from "express";
-import { HomeIndex } from "../controllers/userCon";
+import { FetchAllUsers, Login, Logout, Register } from "../controllers/userCon";
 
 export const userRt: express.Router = express.Router();
-    userRt.get("/", HomeIndex);
-
-
+    userRt.post("/register", Register);
+    userRt.post("/login", Login);
+    userRt.get("/logout", Logout);
+    userRt.get("/", FetchAllUsers);
 
 
